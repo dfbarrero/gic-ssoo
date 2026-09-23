@@ -14,6 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Análisis estático con cppcheck
+        run: |
+          sudo apt-get update && sudo apt-get install -y cppcheck
+          cppcheck --enable=all --error-exitcode=1 --suppress=missingIncludeSystem src/
+
       - name: Ejercicio 1 - suma
         run: make test_suma
 
