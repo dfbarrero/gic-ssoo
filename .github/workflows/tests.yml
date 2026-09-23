@@ -1,0 +1,28 @@
+name: Tests C
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Ejercicio 1 - suma
+        run: make test_suma
+
+      - name: Ejercicio 2 - lista invertida
+        run: make test_lista
+
+      - name: Ejercicio 3 - struct Punto
+        run: make test_punto
+
+      - name: Limpiar binarios
+        if: always()
+        run: make clean
